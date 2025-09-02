@@ -1,47 +1,31 @@
-# Parameter for memory threshold in MB (default: 500 MB)
 param([int]$MemMB = 500)
 
-# Convert the threshold from MB to bytes (WorkingSet is measured in bytes)
 $MemBytes = [long]$MemMB * 1MB
 Write-Output "$MemMB MB = $MemBytes bytes"
 
-# (Standalone line, not required) – left for debug/testing
-Where-Object {$_.WorkingSet -gt $MemBytes}
-
-# Load process names to ignore from the whitelist file
 $whitelist = Get-Content .\config\whitelist.txt
+$timestamp  = Get-Date -Format 'yyyyMMdd-HHmm'
 
-# Generate a timestamp for the CSV filename
-$timestamp = Get-Date -Format "yyyyMMdd-HHmm" 
-
-# Create the output folder if it doesn’t exist (suppress output)
+🔹 Create output folder
 New-Item -ItemType Directory -Path .\output -Force | Out-Null
+$outputFile = ".\output\ProcessReport-$timestamp.csv"
 
-# Full path of the CSV file with a timestamped name
-$outputfile = ".\output\ProcessReport-$timestamp.csv"
+🔹 Get filtered processes
+$offenders = Get-Process |
+  Where-Object { $_.WorkingSet -gt $MemBytes -and $_.ProcessName -notin $whitelist } |
+  Sort-Object -Property WorkingSet -Descending |
+  Select-Object -First 10 Name, Id, WorkingSet
 
-# Get processes that:
-# - Exceed the memory threshold ($MemBytes)
-# - Are NOT in the whitelist
-# Sort by WorkingSet in descending order
-# Take only the top 10 processes
-$offenders = Get-Process | 
-    Where-Object {$_.WorkingSet -gt $MemBytes -and $_.ProcessName -notin $whitelist} |
-    Sort-Object -Property WorkingSet -Descending |
-    Select-Object -First 10 name,id,WorkingSet
+🔹 Export results
+$offenders | Export-Csv -Path $outputFile -NoTypeInformation
 
-# Export the selected processes to a CSV file
-$offenders | Export-Csv -Path $outputfile -NoTypeInformation
+Write-Output "Report saved in $outputFile"
 
-# Print confirmation message
-Write-Output "Report saved in $outputfile"
-
-# If there are processes above the threshold → exit code 1 (warning)
-# Otherwise → exit code 0
-if($offenders.Count -gt 0) {
-    Write-Warning "Found $($offenders.Count) above treshold"
+🔹 Check result
+if ($offenders.Count -gt 0) {
+    Write-Warning "Found $($offenders.Count) processes above threshold!"
     exit 1
 } else {
-    Write-Host "No process about treshold found"
+    Write-Host "No processes above threshold ✅"
     exit 0
 }
