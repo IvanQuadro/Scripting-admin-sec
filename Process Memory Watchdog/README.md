@@ -6,7 +6,7 @@ A simple PowerShell script to monitor and export processes above a memory thresh
 
 Clone the repo:
 ```powershell
-git clone https://github.com/YOUR_USERNAME/ProcessMemoryWatchdog.git
+git clone https://github.com/ProcessMemoryWatchdog/ProcessMemoryWatchdog.git
 cd ProcessMemoryWatchdog
 .\Variables.ps1
 ```
