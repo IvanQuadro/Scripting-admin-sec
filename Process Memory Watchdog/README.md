@@ -38,17 +38,4 @@ if ($offenders.Count -gt 0) {
     Write-Host "No processes above threshold ✅"
     exit 0
 }
-```
-- Le triple backticks + `powershell` danno **colorazione PowerShell**.
-- Gli utenti possono **selezionare tutto e copiare** facilmente.
-
----
-
-### 🔹 4. Carica i file su GitHub
-Puoi usare:
-1. **Git da terminale**:
-   ```bash
-   git add .
-   git commit -m "Add Process Memory Watchdog script"
-   git push
-```
+``` 
