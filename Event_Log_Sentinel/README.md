@@ -3,10 +3,13 @@ A simple PowerShell script to sweep recent Windows Event Logs, filter noise via 
 
 📦 How to use
 Clone the repo:
+```powershell
 
 git clone https://github.com/EventLogSentinel/EventLogSentinel.git
 cd EventLogSentinel
 .\EventLogSentinel.ps1
+```
+```powershell
 
 param([int]$MinutesBack = 60)
 
@@ -51,6 +54,8 @@ if ($events.Count -gt 0) {
   Write-Warning "Found $($events.Count) events"
   exit 1
 } else {
+
+```
   Write-Host "No relevant events ✅"
   exit 0
 }
