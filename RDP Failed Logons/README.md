@@ -1,3 +1,7 @@
+🛡️ What the project does
+
+It scans the Windows Security Event Log for failed RDP (Remote Desktop Protocol) logon attempts.
+The goal is to detect when an IP address is trying repeatedly to break in — a common sign of brute-force attacks.
 
 ```powershell
 git clone https://github.com/YourUser/RDPBurstDetector.git
