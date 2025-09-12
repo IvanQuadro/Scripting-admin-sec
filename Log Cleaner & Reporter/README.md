@@ -1,4 +1,15 @@
-powershell```
+📝 Log Cleaner & Reporter
+
+A simple PowerShell script to scan log files, filter unwanted entries, and export a CSV report with counts of ERROR, WARNING, and CRITICAL events.
+
+📦 How to use
+
+Clone the repo:
+
+git clone https://github.com/LogCleanerReporter/LogCleanerReporter.git
+cd LogCleanerReporter
+
+bash```
 
 param (
     [Parameter(Mandatory=$true)]
