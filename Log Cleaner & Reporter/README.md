@@ -6,10 +6,12 @@ A simple PowerShell script to scan log files, filter unwanted entries, and expor
 
 Clone the repo:
 
+```powershell
 git clone https://github.com/LogCleanerReporter/LogCleanerReporter.git
 cd LogCleanerReporter
+```
 
-bash```
+```powershell
 
 param (
     [Parameter(Mandatory=$true)]
