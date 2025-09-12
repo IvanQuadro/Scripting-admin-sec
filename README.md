@@ -12,7 +12,7 @@ This repository serves as a growing library of automation tools, diagnostics scr
 - Provide **quick security triage** and threat-hunting helpers
 - Offer **clean, well-documented scripts** for learning and practical use
 - Build a portfolio of **PowerShell automation skills**
-
+⚠️ Note: These scripts are learning projects created while improving my PowerShell and automation skills. They are functional but continuously evolving.
 ---
 
 ## 📂 Repository Structure
