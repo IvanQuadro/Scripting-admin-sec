@@ -1,3 +1,14 @@
+🗂️ What the project does
+
+It scans a given directory recursively and reports the largest files.
+The goal is to quickly identify files consuming the most disk space and to check whether they exceed a defined size threshold.
+```powershell
+
+git clone https://github.com/YourUser/DiskUsageReporter.git
+cd DiskUsageReporter
+.\'Disk Usage Reporter.ps1' -Path "C:\Users\Example" -TopFiles 10 -ThresholdMB 100
+```
+```powershell
 param(
     [parameter(mandatory=$true)]
     [string]$Path,
@@ -44,3 +55,4 @@ catch {
     .Exception.Message)"
     exit 1
 } 
+```
