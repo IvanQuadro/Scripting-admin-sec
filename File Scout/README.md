@@ -1,5 +1,4 @@
-
-
+```powershell
 [CmdletBinding()]
 param(
     [Parameter(Mandatory = $true)]
@@ -55,3 +54,4 @@ $sw.Stop()
 Write-Verbose "Completed in $([Math]::Round($sw.Elapsed.TotalSeconds, 2))s"
 
 $topResults
+```
