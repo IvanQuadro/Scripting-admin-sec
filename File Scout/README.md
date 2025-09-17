@@ -1,3 +1,14 @@
+🕵️ File Scout
+
+This PowerShell script scans a given directory recursively and reports the largest files.
+It helps quickly identify files consuming the most disk space and checks whether they exceed a defined size threshold.
+
+```powershell
+📥 Installation
+git clone https://github.com/YourUser/FileScout.git
+cd FileScout
+```
+
 ```powershell
 [CmdletBinding()]
 param(
