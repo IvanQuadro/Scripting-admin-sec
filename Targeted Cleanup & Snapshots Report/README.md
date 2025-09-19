@@ -3,9 +3,13 @@ Targeted Cleanup & Snapshots Report
 This PowerShell script scans a target directory recursively, filters files based on age (last write time) and minimum size, then selects the Top N largest files as candidates for cleanup or archiving.
 It produces a timestamped CSV snapshot in the specified output folder, marking each candidate with an IsArchiveCandidate flag for quick identification.
 
+```powershell
 📥 Installation
 git clone https://github.com/YourUser/TargetedCleanupSnapshotsReport.git
 cd TargetedCleanupSnapshotsReport
+```
+
+```powershell
 
 [CmdletBinding()]
 param(
@@ -53,3 +57,4 @@ $outFile = Join-Path -Path $OutputDir -ChildPath "report-$TimeStamp.csv"
 Write-Verbose "Report path will be: $outFile"
 $top | Export-Csv -Path $outFile -NoTypeInformation -Encoding UTF8
 Write-Verbose "CSV saved"
+```
